@@ -4,7 +4,8 @@
     "strict": true,
     "paths": {
       "@/*": [
-        "./*"
+        // Adicionei o src para que quando use o @ no import, ele pegue desde o src
+        "./src/*"
       ]
     }
   },
