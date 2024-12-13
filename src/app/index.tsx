@@ -1,11 +1,14 @@
 // index.tsx é o primeiro arquivo a ser carregado depois do _layout.
 // Importando função de view e text padrão do react native
-import { View, Text } from "react-native"
+import { View } from "react-native"
+import { router } from "expo-router"
 
 // Importando o componente welcome
 import { Welcome } from "@/components/welcome"
 
 import { Steps } from "@/components/steps"
+
+import { Button } from "@/components/button"
 
 // Exportando por padrão uma função, um componente, para que o expo houter entenda que esse arquivo é uma rota dentro da aplicação
 // O Expo Router é uma biblioteca que traz o conceito de rotas baseadas em arquivos para projetos React Native criados com o Expo.
@@ -27,6 +30,12 @@ export default function Index() {
             {/* Aqui importamos no index os componentes que criamos. */}
             <Welcome />
             <Steps />
+            {/* Passamos o botão com o children, title.*/}
+            {/* Passamos como propriedade do botão, o onPress, que será exectuado quando clicar no botão, e dentro dele */}
+            {/* um arrow function com uma função anonima passando o router para navegar para a home quando clica no botão. */}
+            <Button onPress={() => router.navigate("/home") }>
+                <Button.Title>Começar</Button.Title>
+            </Button>
         </View>
     )
 }

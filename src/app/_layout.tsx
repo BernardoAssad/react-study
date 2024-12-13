@@ -7,6 +7,8 @@
 import { Stack } from "expo-router"
 // Importando o tema com as cores, o @/ está pegando dentro de src conforme definimos no tsconfig.json
 import { colors } from "@/styles/theme"
+// Importando a biblioteca que verifica que estamos arrastando a tela
+import { GestureHandlerRootView } from "react-native-gesture-handler"
 // Importando as fontes que iremos utilizar no projeto, do google fonts. useFonts é utilizado para carregar as fontes e o restante as fontes.
 import { 
     useFonts,
@@ -38,10 +40,15 @@ export default function Layout() {
     // Retornando o tipo de navegação, passando como parametro o screenOptions, que possui algumas opções de personalização, no caso o headerShown altera a visibilidade do cabeçalho padrão.
     //A propriedade contentStyle no React Navigation, especialmente no contexto de stacks, é usada para estilizar o contêiner principal de cada tela.
     // Ou seja, todos os componentes que usam essa navegação, terão esse comportamento. No caso, essa cor de fundo, pegando do arquivo themes.
-    return <Stack
-        screenOptions={{
-            headerShown: false,
-            contentStyle: {backgroundColor: colors.gray[100]}
-        }}
-    />
+    // Tudo isso sendo envolvido pela funcionalidade GestureHandlerRootView que verifica se estamos arrastando a tela para fazer efeito, com o estilo flex 1 para pegar a tela toda.
+    return (
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <Stack
+                screenOptions={{
+                    headerShown: false,
+                    contentStyle: {backgroundColor: colors.gray[100]}
+                }}
+            />
+        </GestureHandlerRootView>
+    )
 }
